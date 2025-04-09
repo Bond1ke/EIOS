@@ -48,20 +48,14 @@ onMounted(() => {
     <div class="timetable-container">
         <div class="table-wrapper">
             <div class="table-scroll-container">
-                <table
-                    class="schedule-table text-[#0c2340] dark:text-white border-separate border-spacing-0"
-                >
+                <table class="schedule-table text-[#0c2340] dark:text-white">
                     <thead>
                         <tr>
-                            <th
-                                class="time-header bg-white dark:bg-[#1f1f1f] border !border-[#0C2340] dark:!border-[#cccccc]"
-                            >
-                                Время
-                            </th>
+                            <th class="time-header bg-white dark:bg-[#1f1f1f]">Время</th>
                             <th
                                 v-for="day in days"
                                 :key="day"
-                                class="day-header bg-white dark:bg-[#1f1f1f] border !border-[#0C2340] dark:!border-[#cccccc]"
+                                class="day-header bg-white dark:bg-[#1f1f1f]"
                             >
                                 {{ day }}
                             </th>
@@ -81,7 +75,7 @@ onMounted(() => {
                             }"
                         >
                             <td
-                                class="time-slot border !border-[#0C2340] dark:!border-[#cccccc] p-1.5 min-w-[215px] w-[215px]"
+                                class="time-slot p-1.5 min-w-[215px] w-[215px]"
                                 :class="{
                                     'bg-white dark:bg-[#1f1f1f]':
                                         isEven === null || isEven !== (i % 2 !== 0),
@@ -97,7 +91,7 @@ onMounted(() => {
                             <td
                                 v-for="(lesson, j) in row"
                                 :key="j"
-                                class="lesson-cell border border-[#0C2340] dark:!border-[#cccccc] p-1.5 min-w-[215px] w-[215px]"
+                                class="lesson-cell p-1.5 min-w-[215px] w-[215px]"
                             >
                                 <LessonCell
                                     :lesson="lesson"
@@ -132,7 +126,6 @@ onMounted(() => {
 
 .table-scroll-container {
     width: 100%;
-    /* max-height: calc(100vh - 150px); */
     overflow: auto;
     position: relative;
 }
@@ -151,21 +144,30 @@ onMounted(() => {
 }
 
 .time-header {
+    /* ======================= */
     position: sticky;
     left: 0;
+    top: 0;
+    border: solid 1px #ccc;
+    /* ======================= */
+
     z-index: 20;
     padding: 8px;
     text-align: center;
     font-weight: bold;
     min-width: calc(115px * v-bind(scaleFactor));
     width: calc(115px * v-bind(scaleFactor));
-    top: 0;
     font-size: v-bind(headerFontSize);
 }
 
 .day-header {
+    /* ======================= */
     position: sticky;
     top: 0;
+    border: solid 1px #ccc;
+    border-left: none;
+    /* ======================= */
+
     z-index: 15;
     padding: 8px;
     text-align: center;
@@ -176,8 +178,13 @@ onMounted(() => {
 }
 
 .time-slot {
+    /* ======================= */
     position: sticky;
     left: 0;
+    border: solid 1px #ccc;
+    border-top: none;
+    /* ======================= */
+
     z-index: 10;
     padding: 8px;
     text-align: center;
@@ -185,12 +192,15 @@ onMounted(() => {
     min-width: 115px;
     width: 115px;
     font-size: v-bind(fontSize);
-    /* border: 1px solid rgba(221, 221, 221, 0.2); */
-    /* border-left: 1px solid rgba(221, 221, 221, 0.2);
-    border-bottom: 1px solid rgba(221, 221, 221, 0.2); */
 }
 
 .lesson-cell {
+    /* ======================= */
+    border: solid 1px #ccc;
+    border-left: none;
+    border-top: none;
+    /* ======================= */
+
     padding: 6px;
     min-width: 215px;
     width: 215px;
@@ -220,10 +230,14 @@ onMounted(() => {
 }
 
 .schedule-table {
+    /* ======================= */
+    border-collapse: separate;
+    border-spacing: 0;
+    /* ======================= */
+
     width: 100%;
     height: 100%;
     min-width: 900px; /* Минимальная ширина для читаемости */
-    border-collapse: collapse;
     table-layout: fixed;
 }
 
